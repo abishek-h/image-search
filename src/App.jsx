@@ -37,7 +37,7 @@ const App = () => {
         {img?.map((data) => {
           return (
             <div>
-              <img id="image" src={data.src.original}></img>
+              <img id="image" src={data.src.small}></img>
             </div>
           );
         })}
