@@ -28,8 +28,8 @@ bar:focus {
   margin-right: 1rem;
 }
 #image {
-  height: 300px;
-  width: 300px;
+  height: 30vh;
+  width: 15vw;
 }
 #content {
   display: flex;
