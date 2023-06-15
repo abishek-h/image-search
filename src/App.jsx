@@ -12,7 +12,7 @@ const App = () => {
     setkey(name);
   };
   useEffect(() => {
-    fetch(`https://api.pexels.com/v1/search?query=${key}&per_page=5`, {
+    fetch(`https://api.pexels.com/v1/search?query=${key}&per_page=10`, {
       method: "GET",
       headers: {
         Authorization:
@@ -27,7 +27,7 @@ const App = () => {
   }, [key]);
 
   return (
-    <>
+    <div id="king-cont">
       <div id="header">Image search engine</div>
       <div id="bar-area">
         <input id="bar" onChange={search}></input>
@@ -36,13 +36,13 @@ const App = () => {
       <div id="content">
         {img?.map((data) => {
           return (
-            <div>
+            <div id="c">
               <img id="image" src={data.src.small}></img>
             </div>
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

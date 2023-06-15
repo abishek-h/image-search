@@ -30,13 +30,15 @@ bar:focus {
 #image {
   height: 30vh;
   width: 15vw;
+  margin-right: 1rem;
 }
 #content {
   display: flex;
-  max-width: 1904px;
   justify-content: space-between;
   margin-left: 3rem;
   margin-right: 3rem;
+  flex-wrap: wrap;
+  row-gap: 3rem;
 }
 button {
   height: 2.2rem;
@@ -47,4 +49,7 @@ button {
 }
 body {
   background-color: #ecf8f9;
+}
+#king-cont {
+  margin-left: 1.2rem;
 }
