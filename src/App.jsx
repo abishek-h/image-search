@@ -1,18 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 
 const App = () => {
   const [img, setimg] = useState([]);
   const [name, setname] = useState("");
-  const search = (event) => {
-    setname(event.target.value);
+  const search = (e) => {
+    setname(e.target.value);
   };
-  const [key, setkey] = useState("");
-  const set = () => {
-    setkey(name);
-  };
-  useEffect(() => {
-    fetch(`https://api.pexels.com/v1/search?query=${key}&per_page=10`, {
+  const click = () => {
+    fetch(`https://api.pexels.com/v1/search?query=${name}&per_page=10`, {
       method: "GET",
       headers: {
         Authorization:
@@ -24,14 +20,22 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [key]);
+  };
 
   return (
     <div id="king-cont">
       <div id="header">Image search engine</div>
       <div id="bar-area">
-        <input id="bar" onChange={search}></input>
-        <button onClick={set}>Search</button>
+        <input
+          id="bar"
+          onInput={search}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              click();
+            }
+          }}
+        ></input>
+        <button onClick={click}>Search</button>
       </div>
       <div id="content">
         {img?.map((data) => {
