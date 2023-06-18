@@ -61,6 +61,7 @@ const App = () => {
           Search
         </button>
       </div>
+
       <div id="content" style={styc}>
         {img == null && <div id="message">Hallo, search the web!</div>}
         {img?.map((data) => {
