@@ -2,10 +2,27 @@ import { useState } from "react";
 import "./App.css";
 
 const App = () => {
-  const [img, setimg] = useState([]);
+  const [img, setimg] = useState(null);
   const [name, setname] = useState("");
+  const [mode, setmode] = useState("light");
+  const modechange = () => {
+    if (mode == "light") {
+      setmode("dark");
+    } else if (mode == "dark") {
+      setmode("light");
+    }
+  };
+  const sty = {
+    color: mode == "light" ? "black" : "white",
+    border: mode == "light" ? "1px solid black" : "1px solid white",
+    backgroundColor: mode == "light" ? "white" : "black",
+  };
+  const styc = {
+    color: mode == "light" ? "black" : "white",
+    backgroundColor: mode == "light" ? "white" : "black",
+  };
   const search = (e) => {
-    setname(e.target.value);
+    setname(e?.target.value);
   };
   const click = () => {
     fetch(`https://api.pexels.com/v1/search?query=${name}&per_page=10`, {
@@ -18,13 +35,18 @@ const App = () => {
       .then((res) => res.json())
       .then((res) => setimg(res.photos))
       .catch((err) => {
-        console.log(err);
+        console.log("tha oombu");
       });
   };
 
   return (
-    <div id="king-cont">
-      <div id="header">Image search engine</div>
+    <div id="king-cont" style={styc}>
+      <button id="mode" onClick={modechange} style={sty}>
+        {mode}
+      </button>
+      <div id="header" style={styc}>
+        Image search engine
+      </div>
       <div id="bar-area">
         <input
           id="bar"
@@ -35,13 +57,23 @@ const App = () => {
             }
           }}
         ></input>
-        <button onClick={click}>Search</button>
+        <button id="sb" onClick={click}>
+          Search
+        </button>
       </div>
-      <div id="content">
+      <div id="content" style={styc}>
+        {img == null && <div id="message">Hallo, search the web!</div>}
         {img?.map((data) => {
           return (
             <div id="c">
-              <img id="image" src={data.src.small}></img>
+              <img
+                id="image"
+                src={data.src.small}
+                style={{
+                  border:
+                    mode == "light" ? "1px solid black" : "1px solid white",
+                }}
+              ></img>
             </div>
           );
         })}
