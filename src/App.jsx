@@ -20,7 +20,7 @@ const App = () => {
     setload(true);
     setTimeout(() => {
       setload(false);
-    }, 1800);
+    }, 2000);
   };
   //
   const checkie = () => {
