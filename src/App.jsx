@@ -1,11 +1,12 @@
 import { useState } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import CircleLoader from "react-spinners/CircleLoader";
 import "./App.css";
 
 const App = () => {
   const [img, setimg] = useState(null);
   const [name, setname] = useState("");
   const [mode, setmode] = useState("light");
+  const [load, setload] = useState(false);
   //
   const modechange = () => {
     if (mode == "light") {
@@ -13,6 +14,18 @@ const App = () => {
     } else if (mode == "dark") {
       setmode("light");
     }
+  };
+  //
+  const loading = () => {
+    setload(true);
+    setTimeout(() => {
+      setload(false);
+    }, 1800);
+  };
+  //
+  const checkie = () => {
+    click();
+    loading();
   };
   //
   const sty = {
@@ -58,27 +71,38 @@ const App = () => {
           onInput={search}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              click();
+              checkie();
             }
           }}
         ></input>
-        <button id="sb" onClick={click}>
+        <button id="sb" onClick={checkie}>
           Search
         </button>
       </div>
       <div id="content">
         {img == null && <div id="message">Hallo, search the web!</div>}
-        {img?.map((data) => {
-          return (
-            <img
-              id="image"
-              src={data.src.small}
-              style={{
-                border: mode == "light" ? "1px solid black" : "1px solid white",
-              }}
-            ></img>
-          );
-        })}
+        {load ? (
+          <div id="loader">
+            <CircleLoader
+              color={mode == "light" ? "#431894" : "#36d7b7"}
+              loading={load}
+              size={120}
+            />
+          </div>
+        ) : (
+          img?.map((data) => {
+            return (
+              <img
+                id="image"
+                src={data.src.small}
+                style={{
+                  border:
+                    mode == "light" ? "1px solid black" : "1px solid white",
+                }}
+              ></img>
+            );
+          })
+        )}
       </div>
     </div>
   );
