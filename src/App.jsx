@@ -1,10 +1,12 @@
 import { useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 import "./App.css";
 
 const App = () => {
   const [img, setimg] = useState(null);
   const [name, setname] = useState("");
   const [mode, setmode] = useState("light");
+  //
   const modechange = () => {
     if (mode == "light") {
       setmode("dark");
@@ -12,6 +14,7 @@ const App = () => {
       setmode("light");
     }
   };
+  //
   const sty = {
     color: mode == "light" ? "black" : "white",
     border: mode == "light" ? "1px solid black" : "1px solid white",
@@ -21,11 +24,13 @@ const App = () => {
     color: mode == "light" ? "black" : "white",
     backgroundColor: mode == "light" ? "white" : "black",
   };
+  //
   const search = (e) => {
     setname(e?.target.value);
   };
+  //
   const click = () => {
-    fetch(`https://api.pexels.com/v1/search?query=${name}&per_page=10`, {
+    fetch(`https://api.pexels.com/v1/search?query=${name}&per_page=12`, {
       method: "GET",
       headers: {
         Authorization:
@@ -35,7 +40,7 @@ const App = () => {
       .then((res) => res.json())
       .then((res) => setimg(res.photos))
       .catch((err) => {
-        console.log("tha oombu");
+        console.log(err);
       });
   };
 
@@ -61,21 +66,17 @@ const App = () => {
           Search
         </button>
       </div>
-
-      <div id="content" style={styc}>
+      <div id="content">
         {img == null && <div id="message">Hallo, search the web!</div>}
         {img?.map((data) => {
           return (
-            <div id="c">
-              <img
-                id="image"
-                src={data.src.small}
-                style={{
-                  border:
-                    mode == "light" ? "1px solid black" : "1px solid white",
-                }}
-              ></img>
-            </div>
+            <img
+              id="image"
+              src={data.src.small}
+              style={{
+                border: mode == "light" ? "1px solid black" : "1px solid white",
+              }}
+            ></img>
           );
         })}
       </div>

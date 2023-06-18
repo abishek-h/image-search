@@ -27,8 +27,8 @@ bar:focus {
 }
 
 #image {
-  height: 30vh;
-  width: 15vw;
+  height: 28vh;
+  width: 13vw;
   border: 1px solid black;
 }
 #content {
@@ -37,7 +37,7 @@ bar:focus {
   margin-left: auto;
   margin-right: auto;
   flex-wrap: wrap;
-  row-gap: 1rem;
+  row-gap: 0rem;
   height: 66.5vh;
   max-width: 80vw;
 }
@@ -72,5 +72,5 @@ body {
   height: 100vh;
 }
 #king-cont {
-  height: 100vh;
+  min-height: 100vh;
 }
