@@ -7,6 +7,7 @@ const App = () => {
   const [name, setname] = useState("");
   const [mode, setmode] = useState("light");
   const [load, setload] = useState(false);
+
   //
   const modechange = () => {
     if (mode == "light") {
@@ -14,18 +15,6 @@ const App = () => {
     } else if (mode == "dark") {
       setmode("light");
     }
-  };
-  //
-  const loading = () => {
-    setload(true);
-    setTimeout(() => {
-      setload(false);
-    }, 2000);
-  };
-  //
-  const checkie = () => {
-    click();
-    loading();
   };
   //
   const sty = {
@@ -51,7 +40,13 @@ const App = () => {
       },
     })
       .then((res) => res.json())
-      .then((res) => setimg(res.photos))
+      .then((res) => {
+        setimg(res.photos);
+        setload(true);
+        setTimeout(() => {
+          setload(false);
+        }, 1000);
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -71,17 +66,18 @@ const App = () => {
           onInput={search}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              checkie();
+              click();
             }
           }}
         ></input>
-        <button id="sb" onClick={checkie}>
+        <button id="sb" onClick={click}>
           Search
         </button>
       </div>
+
       <div id="content">
-        {img == null && <div id="message">Hallo, search the web!</div>}
-        {load ? (
+        {img == null && !load && <div id="message">Hallo, search the web!</div>}
+        {load && (
           <div id="loader">
             <CircleLoader
               color={mode == "light" ? "#431894" : "#36d7b7"}
@@ -89,20 +85,22 @@ const App = () => {
               size={120}
             />
           </div>
-        ) : (
+        )}
+        {!load &&
           img?.map((data) => {
             return (
-              <img
-                id="image"
-                src={data.src.small}
-                style={{
-                  border:
-                    mode == "light" ? "1px solid black" : "1px solid white",
-                }}
-              ></img>
+              <div>
+                <img
+                  id="image"
+                  src={data.src.small}
+                  style={{
+                    border:
+                      mode == "light" ? "1px solid black" : "1px solid white",
+                  }}
+                ></img>
+              </div>
             );
-          })
-        )}
+          })}
       </div>
     </div>
   );
