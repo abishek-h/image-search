@@ -7,7 +7,6 @@ const App = () => {
   const [name, setname] = useState("");
   const [mode, setmode] = useState("light");
   const [load, setload] = useState(false);
-
   //
   const modechange = () => {
     if (mode == "light") {
@@ -25,6 +24,10 @@ const App = () => {
   const styc = {
     color: mode == "light" ? "black" : "white",
     backgroundColor: mode == "light" ? "white" : "black",
+  };
+  const isty = {
+    color: mode == "light" ? "black" : "white",
+    backgroundColor: mode == "light" ? "white" : "#363535",
   };
   //
   const search = (e) => {
@@ -45,7 +48,7 @@ const App = () => {
         setload(true);
         setTimeout(() => {
           setload(false);
-        }, 1000);
+        }, 1200);
       })
       .catch((err) => {
         console.log(err);
@@ -62,6 +65,7 @@ const App = () => {
       </div>
       <div id="bar-area">
         <input
+          style={isty}
           id="bar"
           onInput={search}
           onKeyDown={(e) => {
