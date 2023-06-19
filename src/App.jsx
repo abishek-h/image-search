@@ -59,7 +59,7 @@ const App = () => {
         {mode}
       </button>
       <div id="header" style={styc}>
-        Image search engine
+        Image search
       </div>
       <div id="bar-area">
         <input
