@@ -35,6 +35,7 @@ const App = () => {
   };
   //
   const click = () => {
+    setload(true);
     fetch(`https://api.pexels.com/v1/search?query=${name}&per_page=12`, {
       method: "GET",
       headers: {
@@ -45,10 +46,7 @@ const App = () => {
       .then((res) => res.json())
       .then((res) => {
         setimg(res.photos);
-        setload(true);
-        setTimeout(() => {
-          setload(false);
-        }, 1200);
+        setload(false);
       })
       .catch((err) => {
         console.log(err);
