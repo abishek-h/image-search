@@ -34,7 +34,8 @@ const App = () => {
     setname(e?.target.value);
   };
   //
-  const click = () => {
+  const click = (e) => {
+    e.preventDefault();
     setload(true);
     fetch(`https://api.pexels.com/v1/search?query=${name}&per_page=12`, {
       method: "GET",
@@ -62,21 +63,13 @@ const App = () => {
         Image search
       </div>
       <div id="bar-area">
-        <input
-          style={isty}
-          id="bar"
-          onInput={search}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              click();
-            }
-          }}
-        ></input>
-        <button id="sb" onClick={click}>
-          Search
-        </button>
+        <form onSubmit={click}>
+          <input type="text" style={isty} id="bar" onChange={search}></input>
+          <button id="sb" type="submit">
+            Search
+          </button>
+        </form>
       </div>
-
       <div id="content">
         {img == null && !load && <div id="message">Hallo, search the web!</div>}
         {load && (
