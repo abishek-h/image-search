@@ -28,12 +28,12 @@
   padding-bottom: 3rem;
 }
 #sb {
-  height: 2.56rem;
+  height: 2.57rem;
   width: 4rem;
   background-color: rgb(0, 191, 255);
   color: white;
   font-size: 0.9rem;
-  border: 1px solid black;
+  border: 0.5px solid black;
   border-left: none;
 }
 
@@ -69,18 +69,20 @@ body {
   align-items: center;
   height: 50vh;
 }
-#inbar {
-  width: 40rem;
+.inbar {
+  width: 40vw;
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   padding-left: 1rem;
+  height: 2.3rem;
+  border: 1px solid black;
 }
-#inbar:focus {
+.inbar:focus {
   outline: none;
 }
 
 @media all and (max-width: 360px) {
-  #inbar {
+  .inbar {
     width: 14rem;
   }
   #header {
@@ -92,7 +94,7 @@ body {
   }
 }
 @media all and (max-width: 740px) and (min-width: 370px) {
-  #inbar {
+  .inbar {
     width: 60vw;
   }
 }
