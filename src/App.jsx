@@ -30,6 +30,9 @@ const App = () => {
     backgroundColor: mode == "light" ? "white" : "#363535",
     // border: mode == "light" ? "0.5px solid black" : "none",
   };
+  const sbs = {
+    backgroundColor: mode == "light" ? "black" : "rgb(0,191,255)",
+  };
   //
   const search = (e) => {
     setname(e?.target.value);
@@ -71,7 +74,7 @@ const App = () => {
             style={isty}
             onChange={search}
           ></input>
-          <button id="sb" type="submit">
+          <button id="sb" type="submit" style={sbs}>
             Search
           </button>
         </form>
