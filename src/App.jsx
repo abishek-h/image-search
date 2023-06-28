@@ -28,6 +28,8 @@ const App = () => {
   const isty = {
     color: mode == "light" ? "black" : "white",
     backgroundColor: mode == "light" ? "white" : "#363535",
+    border: mode == "light" ? "1px solid black" : "none",
+    height: mode == "light" ? "2.3rem" : "2.337rem",
   };
   //
   const search = (e) => {
@@ -37,7 +39,7 @@ const App = () => {
   const click = (e) => {
     e.preventDefault();
     setload(true);
-    fetch(`https://api.pexels.com/v1/search?query=${name}&per_page=12`, {
+    fetch(`https://api.pexels.com/v1/search?query=${name}&per_page=45`, {
       method: "GET",
       headers: {
         Authorization:
@@ -62,9 +64,9 @@ const App = () => {
       <div id="header" style={styc}>
         Image search
       </div>
-      <div id="bar-area">
-        <form onSubmit={click}>
-          <input type="text" style={isty} id="bar" onChange={search}></input>
+      <div className="bar-area">
+        <form id="f" onSubmit={click}>
+          <input type="text" id="inbar" style={isty} onChange={search}></input>
           <button id="sb" type="submit">
             Search
           </button>
