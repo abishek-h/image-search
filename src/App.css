@@ -91,3 +91,8 @@ body {
     font-size: 1.5rem;
   }
 }
+@media all and (max-width: 740px) and (min-width: 370px) {
+  #inbar {
+    width: 60vw;
+  }
+}
