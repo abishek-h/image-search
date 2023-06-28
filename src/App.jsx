@@ -5,7 +5,7 @@ import "./App.css";
 const App = () => {
   const [img, setimg] = useState(null);
   const [name, setname] = useState("");
-  const [mode, setmode] = useState("dark");
+  const [mode, setmode] = useState("light");
   const [load, setload] = useState(false);
   //
   const modechange = () => {

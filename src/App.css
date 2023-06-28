@@ -81,9 +81,13 @@ body {
 
 @media all and (max-width: 360px) {
   #inbar {
-    width: 12rem;
+    width: 14rem;
   }
   #header {
-    margin-top: 2rem;
+    margin-top: 4rem;
+    font-size: 2rem;
+  }
+  #message {
+    font-size: 1.5rem;
   }
 }
