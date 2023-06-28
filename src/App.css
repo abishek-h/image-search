@@ -78,3 +78,12 @@ body {
 #inbar:focus {
   outline: none;
 }
+
+@media all and (max-width: 360px) {
+  #inbar {
+    width: 12rem;
+  }
+  #header {
+    margin-top: 2rem;
+  }
+}
